@@ -67,4 +67,16 @@ describe('JobOffersController', () => {
             )
         })
     })
+    
+    describe('updateJobOfferState', () => {
+        it('should throw an error if the job offer does not exist', async () => {
+            const updateRequest = { id: 'nonexistent', state: 'active' }
+
+            jest.spyOn(service, 'updateJobOfferState').mockImplementation(() => {
+                throw new NotFoundException()
+            })
+
+            await expect(controller.updateJobOfferState(updateRequest)).rejects.toThrow(NotFoundException)
+        })
+    })
 })
