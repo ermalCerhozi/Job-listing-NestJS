@@ -16,8 +16,11 @@ export class JobOffersController {
   @Get('/offer/:id')
   async getJobOffer(@Param('id') id: string) {
     const jobOffer = await this.jobOffersService.getJobOfferById(id);
-    if (!jobOffer || jobOffer.state === 'expired') {
-      throw new NotFoundException('Job offer not found or expired');
+    if (!jobOffer) {
+      throw new NotFoundException('Job offer not found');
+    }
+    if (jobOffer.state === 'expired') {
+      throw new NotFoundException('Job offer has expired');
     }
     return jobOffer;
   }

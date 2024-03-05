@@ -15,9 +15,19 @@ export class JobOffersService {
     private jobOfferRepository: Repository<JobOffer>,
   ) {}
 
-  async getJobOfferById(id: any): Promise<JobOffer> {
+  async getJobOfferById(id: any): Promise<Partial<JobOffer>> {
     console.log(`Searching for job offer with id: ${id}`);
-    return await this.jobOfferRepository.findOne({ where: { id: id } });
+    return await this.jobOfferRepository.findOne({
+      where: { id: id },
+      select: [
+        'id',
+        'position',
+        'employer_name',
+        'summary',
+        'description',
+        'state',
+      ],
+    });
   }
 
   async searchJobOffers(query: string): Promise<JobOffer[]> {
