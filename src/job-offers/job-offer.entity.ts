@@ -1,25 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity('job_offers')
 export class JobOffer {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number
 
-  @Column()
-  position: string;
+    @Column()
+    position: string
 
-  @Column()
-  name: string;
+    @Column()
+    name: string
 
-  @Column()
-  description: string;
+    @Column()
+    description: string
 
-  @Column()
-  employer_name: string;
+    @Column()
+    employer_name: string
 
-  @Column()
-  state: string;
+    @Column()
+    state: string
 
-  @Column()
-  summary: string;
+    @Column()
+    summary: string
 }
